@@ -1,0 +1,10 @@
+# System configuration of NFT Marketplace
+
+# NFT service IP
+httpStackHostIp: "127.0.0.1"
+
+# NFT service port
+httpStackPort: 3000
+
+# Product name
+productName: "NFT_Marketplace"
