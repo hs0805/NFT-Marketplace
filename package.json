@@ -1,0 +1,27 @@
+{
+  "name": "nft-marketplace",
+  "version": "1.0.0",
+  "description": "Building mini NFT marketplace",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hs0805/NFT-Marketplace.git"
+  },
+  "keywords": [
+    "Token",
+    "NFT",
+    "Blockchain"
+  ],
+  "author": "happy.singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hs0805/NFT-Marketplace/issues"
+  },
+  "homepage": "https://github.com/hs0805/NFT-Marketplace#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
