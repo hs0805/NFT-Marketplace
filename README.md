@@ -1,6 +1,9 @@
 # NFT-Marketplace
 
-### Steps
+## Steps
+
+### Setting up config and spinning application
+
 - Initialise node project using 
  `$ npm init -y` 
 It will create a package.json file which will contains project description and dependencies details.
@@ -23,3 +26,11 @@ It will create a package.json file which will contains project description and d
  `$ npm i js-yaml`
 
 - create a configuration directory under src and use [configurationManager.js](./src/configuration/configurationManager.js) to load config parameters 
+
+### Setting up logging module
+
+- Install log4js `$ npm i log4js`
+
+- Create a logs directory in root to store the application logs
+
+- Create a logger directory under src and setup logger configuration

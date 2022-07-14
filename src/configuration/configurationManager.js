@@ -30,7 +30,13 @@ const loadConfig = (paramName) => {
 const configParamConst = Object.freeze({
    HTTP_STACK_HOST_IP: loadConfig("httpStackHostIp"),
    HTTP_STACK_PORT: loadConfig('httpStackPort'),
-   PRODUCT_NAME: loadConfig('productName')
+   PRODUCT_NAME: loadConfig('productName'),
+   APPLICATION_LOG_LEVEL: loadConfig('applicationLogLevel'),
+   MAX_LOG_FILE_SIZE: loadConfig('maxLogFileSize'),
+//    MAX_BACKUP_INDEX: loadConfig('maxBackupIndex'),
+   LOG_FILE_PATH: loadConfig('logFilePath'),
+   LOG_FILE_EXTENSION: loadConfig('logFileExtension'),
+   LOG_BACKUPS: loadConfig('logBackups'),
 });
 
 module.exports = {

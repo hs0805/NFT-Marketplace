@@ -8,3 +8,21 @@ httpStackPort: 3000
 
 # Product name
 productName: "NFT_Marketplace"
+
+# set log level
+applicationLogLevel: "info"
+
+# max file size of msg log file in bytes (can accept 1K, 1M, 1G )
+maxLogFileSize: 100K
+
+# max number of msg log file to be created
+maxBackupIndex: 5
+
+# log file path where app will write log
+logFilePath: "./logs/"
+
+# log file extension
+logFileExtension : ".log"
+
+# max number of log files to be backed up
+logBackups: 5
