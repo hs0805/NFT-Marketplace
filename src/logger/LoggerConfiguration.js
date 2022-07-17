@@ -5,12 +5,13 @@ const { configParamConst } = require('../configuration/configurationManager');
 /**
  * @author aaditya.indu
  * @returns function to get logger instance
+ * @reference - https://log4js-node.github.io/log4js-node/appenders.html
  */
 const initLogger = () => {
     try{
         return log4js.configure(
             {
-                "appenders": {
+                "appenders": {  
                     "file" : {
                         type : "file",
                         layout: {
