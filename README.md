@@ -34,3 +34,7 @@ It will create a package.json file which will contains project description and d
 - Create a logs directory in root to store the application logs
 
 - Create a logger directory under src and setup logger configuration
+
+
+### Break code in MVC architecture 
+
