@@ -10,3 +10,18 @@
 // };
 
 // module.exports = catchAsync;
+
+const appLogger = (req, res, next) => {
+    console.log("App Logger");
+    next();
+}
+
+const nftsLogger = (req, res, next) => {
+    console.log("About Logger");
+    next();
+}
+
+module.exports = {
+    nftsLogger,
+    appLogger
+};
