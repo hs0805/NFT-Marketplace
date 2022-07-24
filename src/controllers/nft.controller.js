@@ -11,7 +11,7 @@ const handleGetRequest = catchAsync( async (req, res) => {
     logger.info(`Received request for Event : ${(eventName)} \nHeaders : ${JSON.stringify(reqHeaders)} \nBody : ${JSON.stringify(reqBody)}`);
     switch(eventName) {
         case "create_nft":
-            throw new Error("code phatt gaya");
+            // throw new Error("code phatt gaya");
             response = await nftService.createNFT(reqHeaders, reqBody);
             break;
         default:
@@ -34,3 +34,4 @@ module.exports = {
     handleGetRequest,
     handlePostReqest,
 }
+
