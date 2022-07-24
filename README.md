@@ -38,3 +38,28 @@ It will create a package.json file which will contains project description and d
 
 ### Break code in MVC architecture 
 
+
+
+
+### References
+- https://strongloop.com/strongblog/async-error-handling-expressjs-es7-promises-generators/   (Middleware sync and async)
+- 
+- 
+- 
+- 
+- 
+
+
+1. Global Error Handler
+
+2. Flow id/correlationin header
+
+3. async await
+
+4. Hard example aggregation
+
+5. Replica set
+
+6. Sharding
+
+7. Multiple threads accessing same document
