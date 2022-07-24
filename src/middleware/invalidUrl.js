@@ -1,6 +1,7 @@
 const logger = require("../logger/LoggerConfiguration")
 
 const invalidUrl = (req, res) => {
+    console.log("invalid url received");
     logger.error("INVALID URL RECEIVED");
     const response = {
         "status-code" : "5000",

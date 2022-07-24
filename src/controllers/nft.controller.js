@@ -1,8 +1,9 @@
 const { request } = require("express");
 const logger = require("../logger/LoggerConfiguration");
+const catchAsync = require("../middleware/nft.middleware");
 const nftService = require("../services/nft.service");
 
-const handleGetRequest = (req, res) => {
+const handleGetRequest = catchAsync( async (req, res) => {
     let response;
     const eventName = req.get("X-Event-Name");    // console.log(req.headers["happy"]);
     const reqHeaders = req.headers;
@@ -10,7 +11,8 @@ const handleGetRequest = (req, res) => {
     logger.info(`Received request for Event : ${(eventName)} \nHeaders : ${JSON.stringify(reqHeaders)} \nBody : ${JSON.stringify(reqBody)}`);
     switch(eventName) {
         case "create_nft":
-            response = nftService.createNFT(reqHeaders, reqBody);
+            throw new Error("code phatt gaya");
+            response = await nftService.createNFT(reqHeaders, reqBody);
             break;
         default:
             response = {
@@ -21,6 +23,7 @@ const handleGetRequest = (req, res) => {
     }
     res.status(200).json( response );
 }
+);
 
 const handlePostReqest =  (req, res) => {
     logger.info('Received POST request for nfts');
