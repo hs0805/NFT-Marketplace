@@ -1,8 +1,25 @@
+const { request } = require("express");
 const logger = require("../logger/LoggerConfiguration");
+const nftService = require("../services/nft.service");
 
 const handleGetRequest = (req, res) => {
-    logger.info('Received GET request for nfts');
-    res.status(200).json( {"method":"GET"} );
+    let response;
+    const eventName = req.get("X-Event-Name");    // console.log(req.headers["happy"]);
+    const reqHeaders = req.headers;
+    const reqBody = req.body;
+    logger.info(`Received request for Event : ${(eventName)} \nHeaders : ${JSON.stringify(reqHeaders)} \nBody : ${JSON.stringify(reqBody)}`);
+    switch(eventName) {
+        case "create_nft":
+            response = nftService.createNFT(reqHeaders, reqBody);
+            break;
+        default:
+            response = {
+                "status-code" : "400",
+                "description" : "bad request"
+            }
+            break;
+    }
+    res.status(200).json( response );
 }
 
 const handlePostReqest =  (req, res) => {
@@ -10,20 +27,7 @@ const handlePostReqest =  (req, res) => {
     res.status(200).json( {"method":"POST"} );
 }
 
-const handlePutReqest = (req, res) => {
-    logger.info('Received PUT request for nfts');
-    res.status(200).json( {"method":"PUT"} );
-}
-
-const handleDeleteReqest = (req, res) => {
-    logger.info('Received DELETE request for nfts');
-    res.status(200).json( {"method":"DELETE"} );
-}
-
-
 module.exports = {
     handleGetRequest,
     handlePostReqest,
-    handlePutReqest,
-    handleDeleteReqest
 }

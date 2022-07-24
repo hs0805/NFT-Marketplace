@@ -10,9 +10,7 @@ const usersController = require("../controllers/users.controller");
 router
     .route("/nfts")
     .get(nftController.handleGetRequest)
-    .post(nftController.handlePostReqest)
-    .put(nftController.handlePutReqest)
-    .delete(nftController.handleDeleteReqest);
+    .post(nftController.handlePostReqest);
 
 // way2
 router
@@ -21,9 +19,7 @@ router
 router
     .route("/users")
     .get(usersController.handleGetRequest)
-    .post(usersController.handlePostReqest)
-    .put(usersController.handlePutReqest)
-    .delete(usersController.handleDeleteReqest);
+    .post(usersController.handlePostReqest);
 
 
 

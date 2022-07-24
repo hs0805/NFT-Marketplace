@@ -10,19 +10,7 @@ const handlePostReqest =  (req, res) => {
     res.status(200).json( {"method":"POST"} );
 }
 
-const handlePutReqest = (req, res) => {
-    logger.info('Received PUT request');
-    res.status(200).json( {"method":"PUT"} );
-}
-
-const handleDeleteReqest = (req, res) => {
-    logger.info('Received DELETE request');
-    res.status(200).json( {"method":"DELETE"} );
-}
-
 module.exports = {
     handleGetRequest,
     handlePostReqest,
-    handlePutReqest,
-    handleDeleteReqest
 }
