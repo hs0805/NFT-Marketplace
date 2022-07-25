@@ -37,6 +37,10 @@ const configParamConst = Object.freeze({
    LOG_FILE_PATH: loadConfig('logFilePath'),
    LOG_FILE_EXTENSION: loadConfig('logFileExtension'),
    LOG_BACKUPS: loadConfig('logBackups'),
+   DB_HOST_PORT : loadConfig('DB_HOST_PORT'),
+   DB_NAME : loadConfig('DB_NAME'),
+   DB_USERNAME : loadConfig('DB_USERNAME'),
+   DB_PASSWORD : loadConfig('DB_PASSWORD')
 });
 
 module.exports = {

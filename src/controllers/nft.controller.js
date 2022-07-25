@@ -14,6 +14,9 @@ const handleGetRequest = catchAsync( async (req, res) => {
             // throw new Error("code phatt gaya");
             response = await nftService.createNFT(reqHeaders, reqBody);
             break;
+        case "view_nft":
+            response = await nftService.viewNFT(reqHeaders, reqBody);
+            break;
         default:
             response = {
                 "status-code" : "400",

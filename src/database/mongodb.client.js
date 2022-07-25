@@ -1,17 +1,31 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { configParamConst } = require("../configuration/configurationManager");
+const logger = require('../logger/LoggerConfiguration');
 
-const uri = "mongodb+srv://happy:123456%40123456@nftcluster.53nzlzp.mongodb.net/nftdb?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-async function connectToCluster() {
-    await client.connect().then ( () => 
-        console.log("connection success")
-    ).catch (err => {
-        console.log("Error caught here");
+const DB_HOST_PORT = configParamConst.DB_HOST_PORT;
+const DB_NAME = configParamConst.DB_NAME;
+const DB_USERNAME = configParamConst.DB_USERNAME;
+const DB_PASSWORD = configParamConst.DB_PASSWORD;
+
+const URI = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST_PORT}/${DB_NAME}?retryWrites=true&w=majority`;
+
+const mongoClient = new MongoClient(URI, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    serverApi: ServerApiVersion.v1 }
+);
+
+async function connectToMongoCluster() {
+    logger.info("Initiating connection with MondoDB cluster...");
+    await mongoClient.connect().then ( () => 
+            logger.info("Connection successfully established with MongoDB cluster")
+        ).catch (err => {
+        logger.error("Database connection error : ", err);
     })
 };
 
 module.exports = {
-    connectToCluster, 
-    client
+    connectToMongoCluster, 
+    mongoClient
 }
 

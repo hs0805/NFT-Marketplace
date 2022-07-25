@@ -4,7 +4,7 @@ const logger = require("./src/logger/LoggerConfiguration");
 const requestRouter = require("./src/routes/request.route");
 const invalidUrl = require("./src/middleware/invalidUrl");
 const errorHandler = require("./src/middleware/nft.errorhandler");
-const {connectToCluster} = require("./src/database/mongodb.client");
+const {connectToMongoCluster} = require("./src/database/mongodb.client");
 
 // Creating express application 
 const express = require('express');
@@ -25,8 +25,8 @@ const main = async () => {
         const HTTP_STACK_HOST_IP = configParamConst.HTTP_STACK_HOST_IP;
         const HTTP_STACK_PORT = configParamConst.HTTP_STACK_PORT;
         
-        // Setting up db connectio
-        await connectToCluster();
+        // Setting up db connection
+        await connectToMongoCluster();
 
         app.listen(HTTP_STACK_PORT, HTTP_STACK_HOST_IP, () => {   
 

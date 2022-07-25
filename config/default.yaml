@@ -26,3 +26,15 @@ logFileExtension : ".log"
 
 # max number of log files to be backed up
 logBackups: 5
+
+# Host IP and Port of database
+DB_HOST_PORT : "nftcluster.53nzlzp.mongodb.net"
+
+# Database name
+DB_NAME : "nftdb"
+
+# Database user name
+DB_USERNAME : "happy"
+
+# Database password
+DB_PASSWORD : "123456%40123456"
