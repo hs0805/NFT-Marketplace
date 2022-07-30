@@ -34,8 +34,45 @@ async function getRecordById(dbName, collectionName, fieldName, fieldValue) {
     return document;
 }
 
+async function updateFieldForRecord(dbName, collectionName, oldFieldName, oldFieldValue, newFieldName, newFieldValue) {
+    let result;
+    let isUpdated = false;
+    try {
+        result = await mongoClient.db(dbName).collection(collectionName).updateOne( {[oldFieldName]: oldFieldValue}, {$set: {[newFieldName]: newFieldValue}} ); 
+        if(result.modifiedCount > 0){
+            isUpdated = true;
+            logger.info(`Document updated successfully`);
+        }
+        else {
+            logger.info(`Failed to update document`);
+        }
+    } catch(e) {
+        logger.error(e);
+    }
+    return isUpdated;
+}
+
+async function updateMultipleFieldsOfSingleDocument(dbName, collectionName, searchFieldName, searchFieldValue, fieldsToUpdateJson) {
+    let result;
+    let isUpdated = false;
+    try {
+        result = await mongoClient.db(dbName).collection(collectionName).updateOne( {[searchFieldName]: searchFieldValue}, {$set: (fieldsToUpdateJson)} ); 
+        if(result.modifiedCount > 0){
+            isUpdated = true;
+            logger.info(`Document updated successfully`);
+        }
+        else {
+            logger.info(`Failed to update document`);
+        }
+    } catch(e) {
+        logger.error(e);
+    }
+    return isUpdated;
+}
 
 module.exports = {
     insertRecordWithId,
-    getRecordById
+    getRecordById,
+    updateFieldForRecord,
+    updateMultipleFieldsOfSingleDocument
 }

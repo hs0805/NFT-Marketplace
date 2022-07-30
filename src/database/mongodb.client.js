@@ -17,7 +17,7 @@ const mongoClient = new MongoClient(URI, {
 
 async function connectToMongoCluster() {
     logger.info("Initiating connection with MondoDB cluster...");
-    await mongoClient.connect().then ( () => 
+        await mongoClient.connect().then ( () => 
             logger.info("Connection successfully established with MongoDB cluster")
         ).catch (err => {
         logger.error("Database connection error : ", err);

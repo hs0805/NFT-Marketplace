@@ -17,6 +17,9 @@ const handleGetRequest = catchAsync( async (req, res) => {
         case "view_nft":
             response = await nftService.viewNFT(reqHeaders, reqBody);
             break;
+        case "update_nft":
+            response = await nftService.updateNFT(reqHeaders, reqBody);
+            break;
         default:
             response = {
                 "status-code" : "400",
