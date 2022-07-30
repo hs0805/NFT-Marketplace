@@ -52,7 +52,7 @@ async function updateFieldForRecord(dbName, collectionName, oldFieldName, oldFie
     return isUpdated;
 }
 
-async function updateMultipleFieldsOfSingleDocument(dbName, collectionName, searchFieldName, searchFieldValue, fieldsToUpdateJson) {
+async function updateMultipleFieldsForRecord(dbName, collectionName, searchFieldName, searchFieldValue, fieldsToUpdateJson) {
     let result;
     let isUpdated = false;
     try {
@@ -74,5 +74,5 @@ module.exports = {
     insertRecordWithId,
     getRecordById,
     updateFieldForRecord,
-    updateMultipleFieldsOfSingleDocument
+    updateMultipleFieldsForRecord
 }

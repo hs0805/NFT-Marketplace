@@ -1,10 +1,11 @@
-const { insertRecordWithId, getRecordById, updateFieldForRecord } = require("../database/mogodb.operations");
+const { insertRecordWithId, getRecordById, updateFieldForRecord, updateMultipleFieldsForRecord } = require("../database/mogodb.operations");
 const logger = require("../logger/LoggerConfiguration");
 
 const createNFT = async (reqHeaders, reqBody) => {
     let response;
     try {
-        await insertRecordWithId(reqBody["roll-no"], "nftdb", "nft-collection", reqBody);
+        let _id = `${reqBody["nft-contract-address"]}_${reqBody["token-id"]}`;
+        await insertRecordWithId(_id, "nftdb", "nft-collection", reqBody);
         response = {
             "status-code" : "200",
             "description" : "NFT created successfully"
@@ -22,7 +23,7 @@ const viewNFT = async(reqHeaders, reqBody) => {
     let response;
     try {
         let fieldName = "_id";
-        let fieldValue = reqBody["roll-no"]
+        let fieldValue = `${reqBody["nft-contract-address"]}_${reqBody["token-id"]}`;
         let data = await getRecordById("nftdb", "nft-collection", fieldName, fieldValue);
         response = {
             "status-code" : "200",
@@ -41,12 +42,11 @@ const viewNFT = async(reqHeaders, reqBody) => {
 const updateNFT = async(reqHeaders, reqBody) => {
     let response;
     try {
-        let searchFieldName = "college";
-        let searchFieldValue = reqBody["college"];
-        // let newFieldName = "university"; // If you want to add a field
-        let newFieldValue = reqBody["university"];
-        // If you want to add a field in the document then pass the new fieldname instead of oldFi
-        let isUpdated = await updateFieldForRecord("nftdb", "nft-collection", searchFieldName, searchFieldValue, searchFieldName, newFieldValue);
+        let searchFieldName = "_id";
+        let searchFieldValue = `${reqBody["nft-contract-address"]}_${reqBody["token-id"]}`;
+        let newFieldName = reqBody["newfieldkey"];
+        let newFieldValue = reqBody["newfieldvalue"];
+        let isUpdated = await updateFieldForRecord("nftdb", "nft-collection", searchFieldName, searchFieldValue, newFieldName, newFieldValue);
         if (isUpdated) {
             response = {
                 "status-code" : "200",
