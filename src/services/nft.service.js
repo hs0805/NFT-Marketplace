@@ -1,9 +1,20 @@
 const { insertRecordWithId, getRecordById, updateFieldForRecord, updateMultipleFieldsForRecord, updateMultipleFieldsOfMultipleRecords, getRecordsWithMultipleFilterProjectionOffsetLimit } = require("../database/mogodb.operations");
 const logger = require("../logger/LoggerConfiguration");
+const nftSchema = require("../schema/nft.schema");
+const { schemaValidator } = require("../schema/schema.validator");
 
 const createNFT = async (reqHeaders, reqBody) => {
     let response;
     try {
+        let validationResult = schemaValidator.validate(reqBody, nftSchema.createNftSchema);
+        if(!validationResult.valid) {
+            response = {
+                "status-code" : "900",
+                "description" : "JSON validation Error",
+                "stack-trace" : validationResult.errors.map((e) => e.stack).join('. ')
+            }
+            return response;
+        }
         let _id = `${reqBody["nft-contract-address"]}_${reqBody["token-id"]}`;
         await insertRecordWithId(_id, "nftdb", "nft-collection", reqBody);
         response = {
@@ -26,6 +37,8 @@ const viewNFT = async(reqHeaders, reqBody) => {
         // let fieldName = "_id";
         // let fieldValue = `${reqBody["nft-contract-address"]}_${reqBody["token-id"]}`;
         // let data = await getRecordById("nftdb", "nft-collection", fieldName, fieldValue);
+
+        //CASE 2:
         let filterJson = reqBody["filter-json"];
         let projectionJson = reqBody["projection"]
         let sortedFieldName = reqBody["sorted-field-name"];
@@ -33,7 +46,7 @@ const viewNFT = async(reqHeaders, reqBody) => {
         let limit = reqBody["limit"];
         let resultArr = await getRecordsWithMultipleFilterProjectionOffsetLimit("nftdb", "nft-collection", filterJson, 
         projectionJson, sortedFieldName, offset, limit);
-  
+        
         response = {
             "status-code" : "200",
             "description" : "NFT retrieved successfully",
